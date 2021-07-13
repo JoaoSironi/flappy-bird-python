@@ -26,6 +26,8 @@ class Bird(pygame.sprite.Sprite):
         self.currentImage = 0
 
         self.image = pygame.image.load('assets/sprites/bluebird-upflap.png').convert_alpha()
+        self.mask = pygame.mask.from_surface(self.image)
+        
         self.rect = self.image.get_rect()
         self.rect[0] = SCREEN_WIDTH / 2
         self.rect[1] = SCREEN_HEIGHT / 2
@@ -51,6 +53,8 @@ class Ground(pygame.sprite.Sprite):
         self.image = pygame.image.load('assets/sprites/base.png')
         self.image = pygame.transform.scale(self.image, (GROUND_WIDTH, GROUND_HEIGHT))
 
+        self.mask = pygame.mask.from_surface(self.image)
+
         self.rect = self.image.get_rect()
         self.rect[0] = xpos
         self.rect[1] = SCREEN_HEIGHT - GROUND_HEIGHT
@@ -64,7 +68,7 @@ def offScreen(sprite):
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-BACKGROUND = pygame.image.load('assets/sprites/background-day.png')
+BACKGROUND = pygame.image.load('assets/sprites/background-day.png').convert_alpha()
 BACKGROUND = pygame.transform.scale(BACKGROUND, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
 birdGroup = pygame.sprite.Group()
@@ -103,3 +107,9 @@ while True:
     groundGroup.draw(screen)
     
     pygame.display.update()
+
+    if pygame.sprite.groupcollide(birdGroup, groundGroup, False, False, pygame.sprite.collide_mask):
+        #Game over
+        pygame.display.update()
+        input()
+        break
