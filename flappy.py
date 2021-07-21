@@ -22,16 +22,16 @@ class Bird(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self) 
 
         self.images = [
-            pygame.image.load('assets/sprites/bluebird-upflap.png').convert_alpha(),
-            pygame.image.load('assets/sprites/bluebird-midflap.png').convert_alpha(),
-            pygame.image.load('assets/sprites/bluebird-downflap.png').convert_alpha()
+            pygame.image.load('../assets/sprites/bluebird-upflap.png').convert_alpha(),
+            pygame.image.load('../assets/sprites/bluebird-midflap.png').convert_alpha(),
+            pygame.image.load('../assets/sprites/bluebird-downflap.png').convert_alpha()
         ]
 
         self.speed = SPEED
 
         self.currentImage = 0
 
-        self.image = pygame.image.load('assets/sprites/bluebird-upflap.png').convert_alpha()
+        self.image = pygame.image.load('../assets/sprites/bluebird-upflap.png').convert_alpha()
         self.mask = pygame.mask.from_surface(self.image)
         
         self.rect = self.image.get_rect()
@@ -55,7 +55,7 @@ class Pipe(pygame.sprite.Sprite):
     def __init__(self, inverted, xpos, ysize):
         pygame.sprite.Sprite.__init__(self) 
 
-        self.image = pygame.image.load('assets/sprites/pipe-green.png').convert_alpha()
+        self.image = pygame.image.load('../assets/sprites/pipe-green.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (PIPE_WIDTH, PIPE_HEIGHT))
         
         self.rect = self.image.get_rect()
@@ -78,7 +78,7 @@ class Ground(pygame.sprite.Sprite):
     def __init__(self, xpos):
         pygame.sprite.Sprite.__init__(self) 
 
-        self.image = pygame.image.load('assets/sprites/base.png')
+        self.image = pygame.image.load('../assets/sprites/base.png')
         self.image = pygame.transform.scale(self.image, (GROUND_WIDTH, GROUND_HEIGHT))
 
         self.mask = pygame.mask.from_surface(self.image)
@@ -102,7 +102,7 @@ def get_random_pipes(xpos):
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-BACKGROUND = pygame.image.load('assets/sprites/background-day.png').convert_alpha()
+BACKGROUND = pygame.image.load('../assets/sprites/background-day.png').convert_alpha()
 BACKGROUND = pygame.transform.scale(BACKGROUND, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
 birdGroup = pygame.sprite.Group()
